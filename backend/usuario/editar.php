@@ -6,19 +6,21 @@ class Respuesta {
 
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Revisamos que los parámetros obligatorios estén presentes
-    if (!isset($_POST['id']) || !isset($_POST['nombreusuario']) || !isset($_POST['correo']) || !isset($_POST['contrasena'])) {
+    $datos = json_decode(file_get_contents('php://input'));
+
+    // Revisamos que los parámetros obligatorios estén presentes. Recordemos que la solicitud viene en formato JSON.
+    if (!isset($datos->id) || !isset($datos->nombreusuario) || !isset($datos->correo) || !isset($datos->contrasena)) {
         http_response_code(400); // Bad request
         echo json_encode("Error: Faltan parámetros obligatorios.");
         return;
     }
 
     // Obtener los parámetros enviados en la solicitud
-    $id = $_POST['id'];
-    // $foto = $_FILES['foto'];
-    $nombreusuario = $_POST['nombreusuario'];
-    $correo = $_POST['correo'];
-    $contrasena = $_POST['contrasena'];
+    $id = $datos->id;
+    $nombreusuario = $datos->nombreusuario;
+    $correo = $datos->correo;
+    $contrasena = $datos->contrasena;
+    $foto = $datos->foto;
 
     $conn = new mysqli("localhost", "root", "", "bd");
 
