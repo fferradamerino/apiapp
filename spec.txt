@@ -1,0 +1,184 @@
+Endpoint: /usuario/login.php
+- Método: POST
+- Descripción: verifica las credenciales del usuario retornando verdadero o falso según la operación sea exitosa o no.
+- Parámetros:
+  - correo (string, obligatorio): Correo electrónico del usuario.
+  - contrasena (string, obligatorio): Contraseña del usuario.
+
+Endpoint: /usuario/registro.php
+- Método: POST
+- Descripción: crea una cuenta en el servidor para el usuario, retornando el id del usuario creado.
+- Parámetros:
+  - foto (blob, opcional): foto de perfil del usuario.
+  - nombredeusuario (string, obligatorio): nombre completo del usuario.
+  - correo (string, obligatorio): correo electrónico del usuario.
+  - contrasena (string, obligatorio): contraseña de la cuenta del usuario.
+
+Endpoint: /usuario/editar.php
+- Método: POST
+- Descripción: edita la cuenta del usuario, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - id (int, obligatorio): ID del usuario a editar
+  - foto (blob, opcional): foto de perfil del usuario.
+  - nombredeusuario (string, obligatorio): nombre completo del usuario.
+  - correo (string, obligatorio): correo electrónico del usuario.
+  - contrasena (string, obligatorio): contraseña de la cuenta del usuario. 
+
+Endpoint: /oferta/crear.php
+- Método: POST
+- Descripción: crea una oferta en la base de datos del servidor, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - titulo (string, obligatorio): título de la oferta
+  - subtitulo (string, opcional): subtítulo de la oferta
+  - contenido (string, obligatorio): descripción de la oferta
+  - descuento (float, obligatorio): descuento a aplicar al producto
+  - idProducto (int, obligatorio): ID del producto asociado a la oferta
+
+Endpoint: /oferta/editar.php
+- Método: POST
+- Descripción: permite la edición de una oferta existente, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - idOferta (int, obligatorio): ID de la oferta en la base de datos
+  - titulo (string, obligatorio): título de la oferta
+  - subtitulo (string, opcional): subtítulo de la oferta
+  - contenido (string, obligatorio): descripción de la oferta
+  - descuento (float, obligatorio): descuento a aplicar al producto
+
+Endpoint: /oferta/eliminar.php
+- Método: POST
+- Descripción: elimina la oferta indicada, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - idOferta (int, obligatorio): ID de la oferta en la base de datos
+
+Endpoint: /oferta/obtener.php
+- Método: POST
+- Descripción: retorna las primeras x ofertas más recientes
+- Parámetros:
+  - x (int, obligatorio): la cantidad de ofertas a adquirir
+
+Endpoint: /noticia/crear.php
+- Método: POST
+- Descripción: crear una noticia nueva, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - imagen1 (blob, obligatorio): la primera imagen a mostrar de la noticia
+  - imagen2 (blob, opcional): la segunda imagen a mostrar de la noticia
+  - imagen3 (blob, opcional): la tercera imagen a mostrar de la noticia
+  - titulo (string, obligatorio): título de la noticia
+  - subtitulo (string, opcional): subtítulo de la noticia
+  - contenido (string, obligatorio): contenido de la noticia
+  - seccion (string, obligatorio): seccion de la noticia. Si esta no existe, se crea una nueva
+
+Endpoint: /noticia/editar.php
+- Método: POST
+- Descripción: edita una noticia existente, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - idNoticia (int, obligatorio): ID de la noticia
+  - imagen1 (blob, obligatorio): la primera imagen a mostrar de la noticia
+  - imagen2 (blob, opcional): la segunda imagen a mostrar de la noticia
+  - imagen3 (blob, opcional): la tercera imagen a mostrar de la noticia
+  - titulo (string, obligatorio): título de la noticia
+  - subtitulo (string, opcional): subtítulo de la noticia
+  - contenido (string, obligatorio): contenido de la noticia
+  - seccion (string, obligatorio): seccion de la noticia. Si esta no existe, se crea una nueva
+
+Endpoint: /noticia/eliminar.php
+- Método: POST
+- Descripción: elimina una noticia existente, retornando verdadero o falso si la operación fue exitosa
+- Parámetros:
+  - idNoticia (int, obligatorio): ID de la noticia
+
+Endpoint: /noticia/obtener.php
+- Método: POST
+- Descripción: obtiene una lista de las x noticias más recientes
+- Parámetros:
+  - x (int, obligatorio): la cantidad de noticias más recientes a adquirir
+
+Endpoint: /api/producto/crear.php
+- Método: POST
+- Descripción: crea un producto nuevo, retornando verdadero o falso según la operación sea exitosa o no
+- Parámetros:
+  - nombre (string, obligatorio): nombre del producto
+  - precio (int, obligatorio): precio del producto
+  - nombreCatalogo (string, obligatorio): nombre del catálogo al que el producto está asociado
+
+Endpoint: /api/producto/editar.php
+- Método: POST
+- Descripción: edita un producto ya existente, retornando verdadero o falso según la operación sea exitosa o no
+- Parámetros:
+  - id (string, obligatorio): ID del producto
+  - nombre (string, obligatorio): nombre del producto
+  - precio (int, obligatorio): precio del producto
+  - nombreCatalogo (string, obligatorio): nombre del catálogo al que el producto está asociado
+
+Endpoint: /producto/eliminar.php
+- Método: POST
+- Descripción: elimina un producto existente, retornando verdadero o falso según la operación sea exitosa o no
+- Parámetros:
+  - id (int, obligatorio): ID del producto a eliminar
+
+Endpoint: /producto/obtener.php
+- Método: POST
+- Descripción: obtiene una lista de los x productos más recientes
+- Parámetros:
+  - x (int, obligatorio): cantidad de productos a retornar.
+
+Endpoint: /api/sucursal/crear.php
+- Método: POST
+- Descripción: crea una sucursal nueva
+- Parámetros:
+  - nombre (string, obligatorio): nombre de la sucursal
+  - direccion (string, obligatorio): dirección de la sucursal
+  - telefono (string, obligatorio): teléfono de la sucursal
+  - codigopostal (string, obligatorio): código postal de la sucursal
+  - horarioinicio (string, obligatorio): inicio del horario laboral de la sucursal
+  - horariofin (string, obligatorio): fin del horario laboral de la sucursal
+
+Endpoint: /api/sucursal/editar.php
+- Método: POST
+- Descripción: edita una sucursal ya existente
+- Parámetros:
+  - id: ID de la sucursal (int, obligatorio)
+  - nombre (string, obligatorio): nombre de la sucursal
+  - direccion (string, obligatorio): dirección de la sucursal
+  - telefono (string, obligatorio): teléfono de la sucursal
+  - codigopostal (string, obligatorio): código postal de la sucursal
+  - horarioinicio (string, obligatorio): inicio del horario laboral de la sucursal
+  - horariofin (string, obligatorio): fin del horario laboral de la sucursal
+
+Endpoint: /api/sucursal/eliminar.php
+- Método: POST
+- Descripción: elimina una sucursal existente
+- Parámetros:
+  - id (int, obligatorio): ID de la sucursal a eliminar
+
+Endpoint: /api/sucursal/obtener.php
+- Método: GET
+- Descripción: obtiene una lista de las sucursales almacenadas
+- Parámetros: (sin parámetros)
+
+Endpoint: /api/catalogo/crear.php
+- Método: POST
+- Descripción: crea un catálogo nuevo. Devuelve {"exito":true} si la operación fue exitosa.
+  Devuelve {"exito":false} si la operación falló.
+- Parámetros:
+  - nombre (string, obligatorio): nombre del catálogo
+
+Endpoint: /api/catalogo/editar.php
+- Método: POST
+- Descripción: edita un catálogo ya existente. Devuelve {"exito":true} si la operación fue exitosa.
+  Devuelve {"exito":false} si la operación falló.
+- Parámetros:
+  - id (int, obligatorio): ID del catálogo a editar
+  - nombre (string, obligatorio): nombre del catálogo
+
+Endpoint: /api/catalogo/eliminar.php
+- Método: POST
+- Descripción: elimina un catálogo existente. Devuelve {"exito":true} si la operación fue exitosa.
+  Devuelve {"exito":false} si la operación falló.
+- Parámetros:
+  - id (int, obligatorio): ID del catálogo a eliminar
+
+Endpoint: /api/catalogo/obtener.php
+- Método: GET
+- Descripción: obtiene una lista de los catálogos almacenados. Devuelve una estructura de la forma {$exito, $lista}
+- Parámetros: (sin parámetros)
