@@ -46,11 +46,13 @@ function exito() {
 
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents('php://input'));
+
     // Verificar si se recibieron los parámetros 'imagen1', 'titulo', 'contenido' y 'seccion'
-    if (isset($_POST['titulo']) && isset($_POST['contenido']) && isset($_POST['seccion'])) {
-        $titulo = $_POST['titulo'];
-        $contenido = $_POST['contenido'];
-        $seccion = $_POST['seccion'];
+    if (isset($datos->titulo) && isset($datos->contenido) && isset($datos->seccion)) {
+        $titulo = $datos->titulo;
+        $contenido = $datos->contenido;
+        $seccion = $datos->seccion;
 
         // Iniciamos una conexión a la base de datos
         $conn = new mysqli('localhost', 'root', '', 'bd');

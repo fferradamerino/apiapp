@@ -32,8 +32,10 @@ function exito() {
 
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents('php://input'));
+
     // Verificar si se recibió el parámetro 'idNoticia'
-    if (isset($_POST['idNoticia'])) {
+    if (isset($datos->idNoticia)) {
         $idNoticia = $_POST['idNoticia'];
 
         // Iniciamos una conexión a la base de datos
