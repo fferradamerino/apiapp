@@ -34,14 +34,18 @@ function exito() {
     exit;
 }
 
+
+
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents('php://input'));
+
     // Verificar si se recibieron los parámetros 'idOferta', 'titulo', 'contenido' y 'descuento'
-    if (isset($_POST['idOferta']) && isset($_POST['titulo']) && isset($_POST['contenido']) && isset($_POST['descuento'])) {
-        $idOferta = $_POST['idOferta'];
-        $titulo = $_POST['titulo'];
-        $contenido = $_POST['contenido'];
-        $descuento = $_POST['descuento'];
+    if (isset($datos->idOferta) && isset($datos->titulo) && isset($datos->contenido) && isset($datos->descuento)) {
+        $idOferta = $datos->idOferta;
+        $titulo = $datos->titulo;
+        $contenido = $datos->contenido;
+        $descuento = $datos->descuento;
 
         // Iniciamos una conexión a la base de datos
         $conn = new mysqli('localhost', 'root', '', 'bd');

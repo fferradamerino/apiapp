@@ -19,8 +19,10 @@ if ($conn->connect_error) {
     return;
 }
 
+$datos = json_decode(file_get_contents('php://input'));
+
 // Validamos que los valores obligatorios estén presentes
-if (!isset($_POST['titulo']) || !isset($_POST['subtitulo']) || !isset($_POST['contenido']) || !isset($_POST['descuento']) || !isset($_POST['idProducto'])) {
+if (!isset($datos->titulo) || !isset($datos->subtitulo) || !isset($datos->contenido) || !isset($datos->descuento) || !isset($datos->idProducto)) {
     $respuesta = new Respuesta();
     $respuesta->exito = false;
     echo json_encode($respuesta);
@@ -29,11 +31,11 @@ if (!isset($_POST['titulo']) || !isset($_POST['subtitulo']) || !isset($_POST['co
 }
 
 // Obtener los parámetros de la solicitud
-$titulo = $_POST['titulo'];
-$subtitulo = $_POST['subtitulo'];
-$contenido = $_POST['contenido'];
-$descuento = $_POST['descuento'];
-$idProducto = $_POST['idProducto'];
+$titulo = $datos->titulo;
+$subtitulo = $datos->subtitulo;
+$contenido = $datos->contenido;
+$descuento = $datos->descuento;
+$idProducto = $datos->idProducto;
 
 // Insertar la oferta en la base de datos
 $sql = "INSERT INTO Ofertas (Titulo, Subtitulo, Contenido, Descuento, IdProducto) VALUES ('$titulo', '$subtitulo', '$contenido', $descuento, $idProducto)";
