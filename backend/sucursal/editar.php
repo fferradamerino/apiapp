@@ -38,15 +38,17 @@ function exito() {
 
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents('php://input'));
+
     // Verificar si se recibieron los parámetros 'id', 'nombre', 'direccion', 'telefono', 'codigopostal', 'horarioinicio' y 'horariofin'
-    if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['direccion']) && isset($_POST['telefono']) && isset($_POST['codigopostal']) && isset($_POST['horarioinicio']) && isset($_POST['horariofin'])) {
-        $id = $_POST['id'];
-        $nombre = $_POST['nombre'];
-        $direccion = $_POST['direccion'];
-        $telefono = $_POST['telefono'];
-        $codigopostal = $_POST['codigopostal'];
-        $horarioinicio = $_POST['horarioinicio'];
-        $horariofin = $_POST['horariofin'];
+    if (isset($datos->id) && isset($datos->nombre) && isset($datos->direccion) && isset($datos->telefono) && isset($datos->codigopostal) && isset($datos->horarioinicio) && isset($datos->horariofin)) {
+        $id = $datos->id;
+        $nombre = $datos->nombre;
+        $direccion = $datos->direccion;
+        $telefono = $datos->telefono;
+        $codigoPostal = $datos->codigoPostal;
+        $horarioinicio = $datos->horarioinicio;
+        $horariofin = $datos->horariofin;
 
         // Iniciamos una conexión a la base de datos
         $conn = new mysqli('localhost', 'root', '', 'bd');

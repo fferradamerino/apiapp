@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datos = json_decode(file_get_contents('php://input'));
 
     // Verificar si se recibieron los parámetros 'imagen1', 'titulo', 'contenido' y 'seccion'
-    if (isset($datos->titulo) && isset($datos->contenido) && isset($datos->seccion)) {
+    if (isset($datos->titulo) || isset($datos->contenido) || isset($datos->seccion)) {
         $titulo = $datos->titulo;
         $contenido = $datos->contenido;
         $seccion = $datos->seccion;

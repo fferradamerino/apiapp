@@ -32,9 +32,11 @@ function exito() {
 
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents('php://input'));
+
     // Verificar si se recibió el parámetro 'id'
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
+    if (isset($datos->id)) {
+        $id = $datos->id;
 
         // Iniciamos una conexión a la base de datos
         $conn = new mysqli('localhost', 'root', '', 'bd');

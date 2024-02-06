@@ -35,9 +35,11 @@ function exito($productos) {
 
 // Verificar si se recibió una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents('php://input'));
+
     // Verificar si se recibió el parámetro 'x'
-    if (isset($_POST['x'])) {
-        $x = $_POST['x'];
+    if (isset($datos->x)) {
+        $x = $datos->x;
 
         // Iniciamos una conexión a la base de datos
         $conn = new mysqli('localhost', 'root', '', 'bd');

@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 $datos = json_decode(file_get_contents('php://input'));
 
 // Validamos que los valores obligatorios estén presentes
-if (!isset($datos->titulo) || !isset($datos->subtitulo) || !isset($datos->contenido) || !isset($datos->descuento) || !isset($datos->idProducto)) {
+if (!isset($datos->titulo) || !isset($datos->contenido) || !isset($datos->descuento) || !isset($datos->idProducto)) {
     $respuesta = new Respuesta();
     $respuesta->exito = false;
     echo json_encode($respuesta);
